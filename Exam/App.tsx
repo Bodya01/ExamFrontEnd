@@ -8,13 +8,15 @@
  * @format
  */
 
-import React from 'react';
+import React, { Component, useEffect, useState } from 'react';
+import GreetingService from './api-service/greeting-service/GreetingService'
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   useColorScheme,
   View,
 } from 'react-native';
@@ -26,70 +28,50 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import Message from './models/Message';
+import axios from 'axios';
 
-const Section: React.FC<{
-  title: string;
-}> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const baseHeaders = {
+    headers: {
+        "Content-Type": "application/json",
+        "X-Requested-With": "XMLHttpRequest"
+    }
+};
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  const [message, setMessage] = useState<any>();
+
+  const fetchGreeting = () =>{
+    console.log("fetch started");
+    fetch('http://10.0.2.2:5000/api/greeting/123', {
+      method: 'GET'
+    }).then((response) => {
+      console.log(response.json());
+    })
+    .catch((err) => console.log(err))
+
+
+
+
+
+    GreetingService.getGreeting(3)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch(err => console.log(err))
+  }
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <>
+      <TouchableOpacity
+        onPress={fetchGreeting}
+      >
+        <Text style={[{fontSize: 30, alignSelf: 'center'}]}>Fetch data</Text>
+      </TouchableOpacity>
+      <Text>{message}</Text>
+    </>
   );
 };
 
