@@ -1,7 +1,7 @@
 import APIConfig from "./APIConfig";
 
 const APIRoutes = {
-    getGreetingUrl: () => APIConfig.URL + "api/greeting/",
+    getAuthenticationUrl: () => APIConfig.URL + "api/",
 }
 
 export default APIRoutes;
