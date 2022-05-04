@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { AuthContext } from "../auth/AuthContext";
 import LoginButtonProps from "./LoginButtonProps";
@@ -11,7 +11,7 @@ const LoginButton = (props: LoginButtonProps) => {
             <TouchableOpacity 
                 style={[{alignItems: "center"}]}
                 onPress={() => {
-                    login(props.userName, props.password)
+                    login(props.userName, props.password);
                 }}
             >
                 <Text style={[{color: 'white', fontSize: 30}]}>Log in</Text>

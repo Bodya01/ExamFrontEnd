@@ -1,10 +1,14 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
+import LogoutButton from "../../components/logout-button/LogoutButton";
+import SettingStyles from "./SettingsStyles";
 
 const SettingsPage = () => {
     return(
-        <View style={[{ alignItems: 'center', justifyContent: 'center', flex: 1}]}>
-            <Text>Settings Page</Text>
+        <View style = {[SettingStyles.screenWrapper]}>
+            <View style={[SettingStyles.settingOptionBlock]}>
+                <LogoutButton/>
+            </View>
         </View>
     )
 }

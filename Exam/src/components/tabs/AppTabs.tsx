@@ -12,7 +12,7 @@ const Tabs = createBottomTabNavigator();
 const AppTabs = () => {
     return(
         <Tabs.Navigator
-            initialRouteName="MainPage"
+            initialRouteName="Main Page"
             screenOptions={() => ({
                 tabBarActiveTintColor: "#FFFFFF",
                 tabBarActiveBackgroundColor: "#414045",

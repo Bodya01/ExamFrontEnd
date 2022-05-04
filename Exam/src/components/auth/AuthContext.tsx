@@ -3,48 +3,62 @@ import React, { useEffect, useState } from 'react';
 import { createContext } from "react";
 import AuthService from '../../../api-service/auth-service/AuthService';
 import User from '../../../models/user-models/User';
+import LoadingScreen from '../loading/LoadingScreen';
+import StorageManager from '../storage/StorageManager';
 
 const returnType: any = {};
 
 export const AuthContext = createContext({
     user: null as User | undefined,
+    isLoading: false,
     login: (userName: string, password: string) => returnType,
+    logout: () => returnType,
 });
 
 export const AuthProvider = ({children}: any) => {
     const [user, setUser] = useState<User>(null);
+    const [isLoading, setLoading] = useState<boolean>(false);
+
     const login = (userName: string, password: string) => {
+        setLoading(true);
         AuthService.login({UserName: userName, Password: password})
         .then((res) => {
-            AsyncStorage.setItem("userToken", res.data.jwtToken);
-            AsyncStorage.setItem("tokenId", res.data.jwtId);
-            AsyncStorage.setItem("expireTime", res.data.jwtExpireTime);
-            AsyncStorage.setItem("refreshToken", res.data.refreshToken);
-            AsyncStorage.setItem("user", JSON.stringify(res.data.user));
+            StorageManager.setAuthData(res.data);
             setUser(res.data.user);
-        })
-        .catch(() => console.warn("Unable to login"));
+        });
+        setLoading(false);
     };
     const isLoggedIn = async () => {
         try{
-            const u = await AsyncStorage.getItem("user")
-            console.log(JSON.stringify(u));
-            setUser(u as User);
+            setLoading(true);
+            const storedUser = await AsyncStorage.getItem("user");
+            setUser(storedUser as User);
         }
         catch(e){
             console.warn("no user")
         }
+        finally{
+            setLoading(false);
+        }
+    }
+    const logout = () => {
+        setLoading(true);
+        StorageManager.deleteAuthData();
+        setUser(null);
+        setLoading(false);
     }
     
     useEffect(() => {
-        isLoggedIn().then(() => {});
+        isLoggedIn();
     }, [])
 
     return (
         <AuthContext.Provider
             value={{
                 user: user,
+                isLoading: isLoading,
                 login: login,
+                logout: logout,
             }}
         >
             {children}

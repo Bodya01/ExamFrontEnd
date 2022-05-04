@@ -6,7 +6,6 @@ import AppTabs from '../tabs/AppTabs';
 import User from '../../../models/user-models/User';
 
 const Routes = () => {
-
     const {user} = useContext(AuthContext);
 
     return(
