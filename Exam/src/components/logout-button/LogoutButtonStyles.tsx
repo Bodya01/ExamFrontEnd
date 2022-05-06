@@ -3,6 +3,7 @@ import { lightColors } from "../theme/ThemesColors";
 
 const LogoutButtonStyles = StyleSheet.create({
     logoutButtonWrapper: {
+        alignSelf: "center",
         alignItems: "center",
     },
     logoutButtonText: {

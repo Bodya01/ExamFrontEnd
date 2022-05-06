@@ -1,10 +1,12 @@
 import React from "react";
 import { Text, View } from "react-native";
+import { useTheme } from "../../components/theme/ThemeProvider";
 
 const SearchPage = () => {
+    const {colors} = useTheme();
     return(
-        <View style={[{ alignItems: 'center', justifyContent: 'center', flex: 1}]}>
-            <Text>Search Page</Text>
+        <View style={[{flex: 1, alignSelf: "stretch", alignItems: "center", justifyContent: "center", backgroundColor: colors.white}]}>
+            <Text style={[{color: colors.primary}]}>Search Page</Text>
         </View>
     )
 }

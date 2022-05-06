@@ -1,25 +1,47 @@
 import { StyleSheet } from "react-native";
-import { StyleConstants } from "../../components/constants/StyleConstants";
 
 const SettingStyles = StyleSheet.create({
     screenWrapper: {
-        width: StyleConstants.screenWidth,
-        height: StyleConstants.screenHeight,
+        alignSelf: "stretch",
+        flex: 1,
         alignContent: "center"
     },
 
-    optionsWrapper: {
+    navigatingOption:{
+        display: "flex",
+        width:"100%",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        borderBottomWidth: 1.5,
+    },
 
+    navigatingOptionBlock:{
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+    },
+
+    navigationOptionIcon:{
+        marginRight: 10
     },
 
     settingsText: {
         fontSize: 20,
-        alignSelf: "center"
+        alignSelf: "center",
+        fontWeight: "500"
+    },
+
+    settingsBlockHeader:{
+        alignSelf: "center",
+        marginTop: 20,
+        fontSize: 20,
+        fontWeight: "600"
     },
     
     settingOptionBlock: {
-        height: 60,
-        width: "80%",
+        height: 80,
+        width: "90%",
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",

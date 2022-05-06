@@ -2,6 +2,7 @@ const permanentColors = {
     accentOrange: "#EC6400",
     accentBlue: "#02A2CF",
     accentRed: "#D80056",
+    accentWhite: "#FFFFFF"
 }
 
 export const lightColors = {

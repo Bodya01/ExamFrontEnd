@@ -52,7 +52,6 @@ export const ThemeProvider = ({children}: any) => {
         setScheme: (theme: string) => {
             setSelectedTheme(theme);
             setIsThemeDarkState(isThemeDark(theme));
-            console.log(!isThemeDark(theme));
             changeNavigationBarColor(
                 isThemeDark(theme) ? darkColors.white : lightColors.white,
                 !isThemeDark(theme),

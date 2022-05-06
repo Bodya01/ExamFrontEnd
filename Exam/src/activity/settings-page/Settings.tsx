@@ -1,58 +1,101 @@
-import React, { useState } from "react";
-import { Switch, Text, View } from "react-native";
+import React from "react";
+import { Button, Switch, Text, TouchableOpacity, View } from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import LogoutButton from "../../components/logout-button/LogoutButton";
-import StorageManager from "../../components/storage/StorageManager";
+import ExamNoficitaionsSwitch from "../../components/settings/exam-notifications-switch/ExamNotificationsSwitch";
+import PaymentNoficitaionsSwitch from "../../components/settings/payment-notifications-switch/PaymentNotificationsSwitch";
+import ThemeSwitch from "../../components/theme/theme-switch/ThemeSwitch";
 import { useTheme } from "../../components/theme/ThemeProvider";
 import SettingStyles from "./SettingsStyles";
 
-const SettingsPage = () => {
-    const {colors, isThemeDark, setScheme} = useTheme();
-    const [isSwitchEnabled, setIsSwitchEnabled] = useState<boolean>();
-    const changeTheme = () => {
-        if(isThemeDark){
-            StorageManager.changeTheme("light");
-            setScheme("light");
-        }
-        else{
-            StorageManager.changeTheme("dark");
-            setScheme("dark");
-        }
-    };
-    return(
-        <View style={[SettingStyles.screenWrapper, {backgroundColor: colors.white}]}>
+const SettingsPage = ({ navigation }: any) => {
+    const { colors } = useTheme();
+
+    return (
+        <View style={[SettingStyles.screenWrapper, { backgroundColor: colors.white }]}>
+            <View
+                style={[SettingStyles.settingOptionBlock]}
+            >
+                <TouchableOpacity
+                    style={[SettingStyles.navigatingOption, { borderColor: colors.disable }]}
+                    onPress={() => { navigation.navigate("Bank Account") }}
+                >
+                    <View style={[SettingStyles.navigatingOptionBlock]}>
+                        <Ionicons
+                            name="card"
+                            size={25}
+                            style={[SettingStyles.navigationOptionIcon, { color: colors.accentBlue }]}
+                        />
+                        <Text style={[SettingStyles.settingsText, { color: colors.primary }]}>
+                            Change bank account
+                        </Text>
+                    </View>
+                    <Ionicons
+                        size={20}
+                        name="chevron-forward"
+                        color={colors.primary}
+                    />
+                </TouchableOpacity>
+            </View>
+            <View
+                style={[SettingStyles.settingOptionBlock]}
+            >
+                <TouchableOpacity
+                    style={[SettingStyles.navigatingOption, { borderColor: colors.disable }]}
+                    onPress={() => { navigation.navigate("Password") }}
+                >
+                    <View style={[SettingStyles.navigatingOptionBlock]}>
+                        <Ionicons
+                            name="lock-open"
+                            size={25}
+                            style={[SettingStyles.navigationOptionIcon, { color: colors.accentBlue }]}
+                        />
+                        <Text style={[SettingStyles.settingsText, { color: colors.primary }]}>
+                            Change password
+                        </Text>
+                    </View>
+                    <Ionicons
+                        size={20}
+                        name="chevron-forward"
+                        color={colors.primary}
+                    />
+                </TouchableOpacity>
+            </View>
             <View>
+                <Text
+                    style={[ SettingStyles.settingsBlockHeader, {color: colors.disable}]}
+                >
+                    Theme
+                </Text>
                 <View style={[SettingStyles.settingOptionBlock]}>
                     <Text style={[SettingStyles.settingsText, {color: colors.primary}]}>
                         Dark app theme
                     </Text>
-                    <Switch
-                        value={isSwitchEnabled}
-                        onValueChange={()=> {
-                            setIsSwitchEnabled(!isSwitchEnabled);
-                            changeTheme();
-                        }}
-                    />
+                    <ThemeSwitch />
+                </View>
+
+            </View>
+            <View>
+                <Text
+                    style={[ SettingStyles.settingsBlockHeader, {color: colors.disable}]}
+                >
+                    Notifications
+                </Text>
+                <View style={[SettingStyles.settingOptionBlock]}>
+                    <Text style={[SettingStyles.settingsText, {color: colors.primary}]}>
+                        Disable exam notifications
+                    </Text>
+                    <ExamNoficitaionsSwitch/>
                 </View>
                 <View style={[SettingStyles.settingOptionBlock]}>
                     <Text style={[SettingStyles.settingsText, {color: colors.primary}]}>
-                        Settings option
+                        Disable payment notifications
                     </Text>
-                </View>
-                <View style={[SettingStyles.settingOptionBlock]}>
-                    <Text style={[SettingStyles.settingsText, {color: colors.primary}]}>
-                        Settings option
-                    </Text>
-                </View>
-                <View style={[SettingStyles.settingOptionBlock]}>
-                    <Text style={[SettingStyles.settingsText, {color: colors.primary}]}>
-                        Settings option
-                    </Text>
+                    <PaymentNoficitaionsSwitch/>
                 </View>
             </View>
 
-            <View style={[{alignSelf: "center"}]}>
-                <LogoutButton/>
-            </View>
+                <LogoutButton />
         </View>
     )
 }
