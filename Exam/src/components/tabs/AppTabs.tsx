@@ -6,18 +6,20 @@ import React from "react";
 import Search from "../../activity/search-page/Search";
 import NotificationsPage from "../../activity/notifications-page/Notifications";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useTheme } from "../theme/ThemeProvider";
 
 const Tabs = createBottomTabNavigator();
 
 const AppTabs = () => {
+    const {colors} = useTheme();
     return(
         <Tabs.Navigator
             initialRouteName="Main Page"
             screenOptions={() => ({
-                tabBarActiveTintColor: "#FFFFFF",
-                tabBarActiveBackgroundColor: "#414045",
-                tabBarInactiveTintColor: "#AAA9AE",
-                tabBarInactiveBackgroundColor:"#FFFFFF",
+                tabBarActiveTintColor: colors.white,
+                tabBarActiveBackgroundColor: colors.hover,
+                tabBarInactiveTintColor: colors.secondaryLight,
+                tabBarInactiveBackgroundColor: colors.white,
                 tabBarLabelStyle: {
                     fontStyle: "normal",
                     fontSize: 10,

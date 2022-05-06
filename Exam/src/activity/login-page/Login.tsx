@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { TextInput, View } from "react-native";
 import LoginButton from "../../components/login/LoginButton";
 import LoginStyle from './LoginStyle';

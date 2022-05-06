@@ -22,6 +22,10 @@ const StorageManager = {
 
         await Promise.all(promises);
     },
+
+    changeTheme: (themeState: string) => {
+        AsyncStorage.setItem("theme", themeState);
+    },
 }
 
 export default StorageManager;

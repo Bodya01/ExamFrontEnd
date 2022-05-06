@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import AppColors from "../theme/AppColors";
+import { lightColors } from "../theme/ThemesColors";
 
 const LogoutButtonStyles = StyleSheet.create({
     logoutButtonWrapper: {
@@ -8,7 +8,6 @@ const LogoutButtonStyles = StyleSheet.create({
     logoutButtonText: {
         fontSize: 20,
         fontWeight: "bold",
-        color: AppColors.accentOrange,
         paddingVertical:15,
     },
 })
