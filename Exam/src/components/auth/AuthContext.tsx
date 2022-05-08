@@ -9,34 +9,45 @@ const returnType: any = {};
 
 export const AuthContext = createContext({
     user: null as User | undefined,
+    isLoading: false,
+    hasLoginError: false,
     login: (userName: string, password: string) => returnType,
     logout: () => returnType,
 });
 
-export const AuthProvider = ({children}: any) => {
+export const AuthProvider = ({ children }: any) => {
     const [user, setUser] = useState<User>(null);
-
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [hasLoginError, setHasLoginError] = useState<boolean>(false);
     const login = (userName: string, password: string) => {
-        AuthService.login({UserName: userName, Password: password})
-        .then((res) => {
-            StorageManager.setAuthData(res.data);
-            setUser(res.data.user);
-        });
+        setIsLoading(true);
+        AuthService.login({ UserName: userName, Password: password })
+            .then((res) => {
+                StorageManager.setAuthData(res.data);
+                setHasLoginError(false);
+                setUser(res.data.user);
+            })
+            .catch(() => {
+                setHasLoginError(true);
+            })
+        setIsLoading(false);
     };
     const isLoggedIn = async () => {
-        try{
+        try {
             const storedUser = await AsyncStorage.getItem("user");
             setUser(storedUser as User);
         }
-        catch(e){
+        catch (e) {
             console.warn("no user")
         }
     }
     const logout = () => {
+        setIsLoading(true);
         StorageManager.deleteAuthData();
         setUser(null);
+        setIsLoading(false);
     }
-    
+
     useEffect(() => {
         isLoggedIn();
     }, [])
@@ -45,6 +56,8 @@ export const AuthProvider = ({children}: any) => {
         <AuthContext.Provider
             value={{
                 user: user,
+                isLoading: isLoading,
+                hasLoginError: hasLoginError,
                 login: login,
                 logout: logout,
             }}

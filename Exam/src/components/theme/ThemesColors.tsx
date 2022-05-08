@@ -14,6 +14,7 @@ export const lightColors = {
     neutralLight: "#F8F8F8",
     secondaryLight: "#AAA9AE",
     disable: "#C4C4C4",
+    grayBackgroud: "#F1F1F1"
 }
 
 export const darkColors = {
@@ -25,4 +26,5 @@ export const darkColors = {
     neutralLight: "#414045",
     secondaryLight: "#C4C4C4",
     disable: "#C4C4C4",
+    grayBackgroud: "#303030"
 }
