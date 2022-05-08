@@ -11,8 +11,8 @@ const StorageManager = {
         AsyncStorage.setItem("refreshToken", data.refreshToken);
         AsyncStorage.setItem("user", JSON.stringify(data.user));
         AsyncStorage.getItem("pictureColor").then((color) => {
-            if(!color){
-                AsyncStorage.setItem("pictureColor", `#${Math.floor(Math.random()*16777215).toString(16)}`);
+            if (!color) {
+                AsyncStorage.setItem("pictureColor", `#${Math.floor(Math.random() * 16777215).toString(16)}`);
             }
         });
     },
@@ -41,7 +41,19 @@ const StorageManager = {
     getStoredUser: async () => {
         const storedUser = await AsyncStorage.getItem("user");
         return JSON.parse(storedUser!) as User
-    }
+    },
+
+    getTokenExpireTime: async () => {
+        return AsyncStorage.getItem("expireTime");
+    },
+
+    getRefreshToken: async () => {
+        return AsyncStorage.getItem("refreshToken");
+    },
+
+    getToken: async () => {
+        return AsyncStorage.getItem("userToken");
+    },
 }
 
 export default StorageManager;
