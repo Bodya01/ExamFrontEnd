@@ -29,7 +29,7 @@ const SettingStyles = StyleSheet.create({
     settingsText: {
         fontSize: 20,
         alignSelf: "center",
-        fontWeight: "500"
+        fontWeight: "400"
     },
 
     settingsBlockHeader:{

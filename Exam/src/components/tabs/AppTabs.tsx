@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import MainPage from "../../activity/main-page/MainPage";
 import Profile from "../../activity/profile-page/Profile";
-import React, { useContext } from "react";
+import React from "react";
 import Search from "../../activity/search-page/Search";
 import NotificationsPage from "../../activity/notifications-page/Notifications";
 import Ionicons from 'react-native-vector-icons/Ionicons';

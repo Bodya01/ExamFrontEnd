@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 
 const LoginButtonStyles = StyleSheet.create({
-    buttonWrapper:{
+    buttonWrapper: {
         width: '100%',
         alignSelf: "center",
         alignContent: "center",

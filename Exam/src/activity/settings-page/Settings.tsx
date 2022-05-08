@@ -69,7 +69,7 @@ const SettingsPage = ({ navigation }: any) => {
                 </Text>
                 <View style={[SettingStyles.settingOptionBlock]}>
                     <Text style={[SettingStyles.settingsText, {color: colors.primary}]}>
-                        Dark app theme
+                        Dark theme
                     </Text>
                     <ThemeSwitch />
                 </View>
