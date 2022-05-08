@@ -5,14 +5,14 @@ import { useTheme } from "../ThemeProvider";
 
 
 const ThemeSwitch = () => {
-    const {colors, isThemeDark, setScheme} = useTheme();
+    const { colors, isThemeDark, setScheme } = useTheme();
     const [isSwitchEnabled, setIsSwitchEnabled] = useState<boolean>();
     const changeTheme = () => {
-        if(isThemeDark){
+        if (isThemeDark) {
             StorageManager.changeTheme("light");
             setScheme("light");
         }
-        else{
+        else {
             StorageManager.changeTheme("dark");
             setScheme("dark");
         }
@@ -22,10 +22,10 @@ const ThemeSwitch = () => {
         setIsSwitchEnabled(isThemeDark);
     }, [])
 
-    return(
+    return (
         <Switch
             value={isSwitchEnabled}
-            onValueChange={()=> {
+            onValueChange={() => {
                 setIsSwitchEnabled(!isSwitchEnabled);
                 changeTheme();
             }}

@@ -1,4 +1,4 @@
-interface LoginModel{
+interface LoginModel {
     UserName: string,
     Password: string
 };

@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
 
 const LoginStyle = StyleSheet.create({
-    pageWrapper:{
+    pageWrapper: {
         flex: 1,
     },
-    headerWrapper:{
-        flex: 1, 
-        justifyContent: "center" 
+    headerWrapper: {
+        flex: 1,
+        justifyContent: "center"
     },
     bodyWrapper: {
         flex: 3,
@@ -16,9 +16,9 @@ const LoginStyle = StyleSheet.create({
         justifyContent: "center"
     },
 
-    greetingMessage:{
+    greetingMessage: {
         fontSize: 40,
-        marginLeft: "10%", 
+        marginLeft: "10%",
     },
 
     inputWrapper: {

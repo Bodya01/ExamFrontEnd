@@ -1,6 +1,6 @@
 import User from "../../user-models/User";
 
-interface AuthenticationResult{
+interface AuthenticationResult {
     jwtId: string,
     jwtToken: string,
     jwtExpireTime: string,

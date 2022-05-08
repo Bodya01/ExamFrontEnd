@@ -1,4 +1,4 @@
-interface RefreshToken{
+interface RefreshToken {
     Token: string | null,
     RefreshToken: string | null,
 };

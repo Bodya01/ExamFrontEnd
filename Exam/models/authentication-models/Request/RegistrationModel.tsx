@@ -1,4 +1,4 @@
-interface RegistrationModel{
+interface RegistrationModel {
     Email: string,
     Name: string,
     Surname: string,

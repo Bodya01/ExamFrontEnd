@@ -10,10 +10,10 @@ export const ThemeContext = React.createContext({
     isThemeDark: false,
     theme: "light",
     //eslint-disable-next-line @typescript-eslint/no-unused-vars
-    setScheme: (_scheme : any) => returnType, colors: lightColors,
+    setScheme: (_scheme: any) => returnType, colors: lightColors,
 });
 
-export const ThemeProvider = ({children}: any) => {
+export const ThemeProvider = ({ children }: any) => {
     const colorScheme = useColorScheme();
 
     const isThemeDark = (theme: string) => theme === "dark" || (theme === "system" && colorScheme === "dark");
@@ -35,8 +35,7 @@ export const ThemeProvider = ({children}: any) => {
     }, []);
 
     React.useEffect(() => {
-        if(selectedTheme === "system")
-        {
+        if (selectedTheme === "system") {
             setIsThemeDarkState(colorScheme === "dark");
             changeNavigationBarColor(
                 colorScheme === "dark" ? darkColors.white : lightColors.white,
