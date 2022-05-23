@@ -2,10 +2,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import MainPage from "../../activity/main-page/MainPage";
 import Profile from "../../activity/profile-page/Profile";
 import React from "react";
-import Search from "../../activity/search-page/Search";
 import NotificationsPage from "../../activity/notifications-page/Notifications";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useTheme } from "../theme/ThemeProvider";
+import SearchTabs from "../search/SearchTabs";
 import SettingsTabs from "../settings/SettingsTabs";
 
 const Tabs = createBottomTabNavigator();
@@ -25,7 +25,7 @@ const AppTabs = () => {
                     fontSize: 10,
                     fontWeight: "bold",
                     lineHeight: 12,
-                }
+                },
             })}
         >
             <Tabs.Screen
@@ -49,13 +49,9 @@ const AppTabs = () => {
 
             <Tabs.Screen
                 name="SearchTabs"
-                component={Search}
+                component={SearchTabs}
                 options={{
-                    headerShown: true,
-                    headerTitle: "Search",
-                    headerStyle: {
-                        backgroundColor: colors.white,
-                    },
+                    headerShown: false,
                     headerTitleStyle: {
                         color: colors.primary
                     },

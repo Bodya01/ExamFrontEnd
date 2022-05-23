@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }: any) => {
                 setHasLoginError(false);
                 setUser(res.data.user);
             })
-            .catch(() => {
+            .catch((err) => {
                 setHasLoginError(true);
             })
         setIsLoading(false);

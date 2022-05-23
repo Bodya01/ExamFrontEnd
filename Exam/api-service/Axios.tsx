@@ -1,7 +1,7 @@
-import AsyncStorage from "@react-native-community/async-storage";
 import axios from "axios";
+import AuthenticationResult from "../models/authentication-models/Response/AuthenticationResult";
 import StorageManager from "../src/components/storage/StorageManager";
-import AuthService from "./auth-service/AuthService";
+import APIRoutes from "./APIRoutes";
 
 const Axios = axios.create({ timeout: 20000 });
 
@@ -10,12 +10,12 @@ Axios.interceptors.request.use(
         if (Date.now() > Date.parse(await StorageManager.getTokenExpireTime() ?? "")) {
             const RefreshToken = await StorageManager.getRefreshToken();
             const Token = await StorageManager.getToken();
-            const result = await AuthService.refresh({
-                RefreshToken: RefreshToken!,
-                Token: Token!
-            }).then((res) => {
-                StorageManager.setAuthData(res.data);
-            });
+            axios.post(
+                APIRoutes.getAuthenticationUrl() + "refresh",
+                { RefreshToken, Token }).then((res) => {
+                    let result: AuthenticationResult = res.data
+                    StorageManager.setAuthData(result);
+                });
         }
         const token = await StorageManager.getToken();
 

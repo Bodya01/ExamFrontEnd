@@ -11,10 +11,6 @@ const Routes = () => {
     const {isLoading, user} = useContext(AuthContext);
     const {colors} = useTheme();
 
-    useEffect(()=>{
-        console.log(isLoading);
-    })
-
     return(
         <NavigationContainer>
             {isLoading

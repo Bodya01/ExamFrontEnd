@@ -1,9 +1,12 @@
 import APIConfig from "./APIConfig";
 
 const APIRoutes = {
+
     getAuthenticationUrl: () => APIConfig.URL + "api/",
 
-    getCheckAuthUrl: () => APIConfig.URL + "api/auth/"
+    getGroupUrl: () => APIConfig.URL + "api/groups",
+
+    getExamUrl: () => APIConfig.URL + "api/exams/",
 }
 
 export default APIRoutes;

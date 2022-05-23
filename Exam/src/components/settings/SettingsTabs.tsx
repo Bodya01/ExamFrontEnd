@@ -14,6 +14,9 @@ const SettingsTabs = () => {
     return(
         <Stack.Navigator
             initialRouteName="Settings"
+            screenOptions={{
+                headerTitleAlign: "center"
+            }}
         >
             <Stack.Screen
                 name="Settings"

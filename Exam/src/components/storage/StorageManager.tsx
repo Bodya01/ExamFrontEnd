@@ -10,6 +10,7 @@ const StorageManager = {
         AsyncStorage.setItem("expireTime", data.jwtExpireTime);
         AsyncStorage.setItem("refreshToken", data.refreshToken);
         AsyncStorage.setItem("user", JSON.stringify(data.user));
+        AsyncStorage.setItem("userType", "groupId" in data.user ? "Student" : "Teacher");
         AsyncStorage.getItem("pictureColor").then((color) => {
             if (!color) {
                 AsyncStorage.setItem("pictureColor", `#${Math.floor(Math.random() * 16777215).toString(16)}`);
@@ -25,6 +26,7 @@ const StorageManager = {
         promises.push(AsyncStorage.removeItem("expireTime"));
         promises.push(AsyncStorage.removeItem("tokenId"));
         promises.push(AsyncStorage.removeItem("user"));
+        promises.push(AsyncStorage.removeItem("userType"))
         promises.push(AsyncStorage.removeItem("pictureColor"))
 
         await Promise.all(promises);
