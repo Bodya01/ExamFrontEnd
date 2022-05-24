@@ -45,17 +45,21 @@ const StorageManager = {
         return JSON.parse(storedUser!) as User
     },
 
-    getTokenExpireTime: async () => {
+    getTokenExpireTime: () => {
         return AsyncStorage.getItem("expireTime");
     },
 
-    getRefreshToken: async () => {
+    getRefreshToken:  () => {
         return AsyncStorage.getItem("refreshToken");
     },
 
-    getToken: async () => {
+    getToken:  () => {
         return AsyncStorage.getItem("userToken");
     },
+
+    getUserType: () =>{
+        return AsyncStorage.getItem("userType")
+    }
 }
 
 export default StorageManager;

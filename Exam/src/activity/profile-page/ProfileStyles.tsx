@@ -36,6 +36,49 @@ const ProfileStyles = StyleSheet.create({
 
     profileBody: {
         flex: 4,
+        alignItems: "center",
+    },
+
+    bodyWrapper: {
+        width: "100%",
+    },
+
+    markHeader: {
+        fontSize: 20,
+        fontWeight: "600",
+        margin: 20,
+        alignSelf: "center",
+    },
+
+    groupButton: {
+        width: "80%",
+        alignSelf: "center",
+        alignItems: "center",
+        borderRadius: 10,
+        marginVertical: 10,
+    },
+
+    buttonText: {
+        padding: 20,
+        fontSize: 17,
+        fontWeight: "500",
+    },
+
+    tableHeader: {
+        marginTop: 20,
+        height: 40,
+        width: "90%",
+        alignSelf: "center"
+    },
+
+    tableText: {
+        alignSelf: "center",
+    },
+
+    tableCell: {
+        height: 40,
+        alignSelf: "center",
+        width: "90%"
     }
 });
 

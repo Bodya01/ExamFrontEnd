@@ -9,10 +9,9 @@ import OptionButtonProps from "./OptionButtonProps";
 const OptionButton = (props: OptionButtonProps) => {
     const { colors } = useTheme();
     const buttonText = props.text
+    
     return (
         <>
-
-
             <TouchableOpacity
                 onPress={() => { props.navigation.navigate(props.navigationRoute) }}
                 style={[SearchStyles.buttonWrapper, {
@@ -21,11 +20,7 @@ const OptionButton = (props: OptionButtonProps) => {
                     colors={[colors.blueGradientFrom, colors.blueGradientTo]}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
-                    style={[{
-                        width: "100%", height: "100%", borderRadius: 10,
-                        justifyContent: "center",
-                        alignItems: "center"
-                    }]}
+                    style={[SearchStyles.buttonGradient]}
                 >
                     <Text style={[{ color: colors.accentWhite, fontSize: 17 }]}>{buttonText}</Text>
                 </LinearGradient>

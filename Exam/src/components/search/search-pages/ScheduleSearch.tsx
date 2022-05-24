@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Button, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import HeaderBackButton from "../../navigation/header-back-button/HeaderBackButton";
 import { useTheme } from "../../theme/ThemeProvider";
@@ -38,7 +38,6 @@ const ScheduleSearch = ({ navigation }: any) => {
 
     useEffect(() => {
         configureHeaderBackButton();
-
     }, [])
 
     return (

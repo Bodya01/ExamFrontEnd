@@ -8,6 +8,10 @@ const GroupSerivce = {
 
     getGroups: async () => APIService.get<Group[]>(route),
 
+    getGroupById: async (id : number) => APIService.get<Group[]>(route + id),
+
+    getGroupsByTeacher: async (teacherId: string) => APIService.get<Group[]>(route + "by-teacher/" + teacherId),
+
 };
 
 export default GroupSerivce;

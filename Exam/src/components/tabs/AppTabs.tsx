@@ -1,12 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import MainPage from "../../activity/main-page/MainPage";
-import Profile from "../../activity/profile-page/Profile";
 import React from "react";
 import NotificationsPage from "../../activity/notifications-page/Notifications";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useTheme } from "../theme/ThemeProvider";
 import SearchTabs from "../search/SearchTabs";
 import SettingsTabs from "../settings/SettingsTabs";
+import MyProfileTabs from "../my-profile/MyProfileTabs";
 
 const Tabs = createBottomTabNavigator();
 
@@ -30,16 +30,10 @@ const AppTabs = () => {
         >
             <Tabs.Screen
                 name="ProfileTabs"
-                component={Profile}
+                component={MyProfileTabs}
                 options={{
-                    headerShown: true,
+                    headerShown: false,
                     headerTitle: "My profile",
-                    headerStyle: {
-                        backgroundColor: colors.white,
-                    },
-                    headerTitleStyle: {
-                        color: colors.primary
-                    },
                     tabBarLabel: "Profile",
                     tabBarIcon: ({ color, size }) => {
                         return <Ionicons name="person" color={color} size={size} />

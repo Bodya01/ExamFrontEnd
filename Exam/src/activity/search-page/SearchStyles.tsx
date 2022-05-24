@@ -13,6 +13,14 @@ const SearchStyles = StyleSheet.create({
     buttonWrapper: {
         marginVertical: 10,
         width: 160, height: 100,
+    },
+
+    buttonGradient: {
+        width: "100%",
+        height: "100%",
+        borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center"
     }
 })
 export default SearchStyles;

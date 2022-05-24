@@ -15,7 +15,7 @@ export const lightColors = {
     hover: "#414045",
     secondaryDark: "#909095",
     neutralLight: "#F8F8F8",
-    secondaryLight: "#AAA9AE",
+    secondaryLight: "#C4C4C4",
     disable: "#C4C4C4",
     grayBackgroud: "#F1F1F1"
 }
@@ -27,7 +27,7 @@ export const darkColors = {
     hover: "#F8F8F8",
     secondaryDark: "#C4C4C4",
     neutralLight: "#414045",
-    secondaryLight: "#C4C4C4",
+    secondaryLight: "#AAA9AE",
     disable: "#C4C4C4",
     grayBackgroud: "#303030"
 }
