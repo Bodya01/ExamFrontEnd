@@ -26,21 +26,21 @@ const ProfilePage = ({ navigation }: any) => {
         StorageManager.getStoredUser().then((storedUser) => {
             setUser(storedUser);
             u = storedUser;
+            StorageManager.getUserType().then((type) => {
+                setUserType(type!)
+                if (type?.toString() == "Teacher") {
+                    GroupSerivce.getGroupsByTeacher(u?.id!).then((res) => {
+                        const g = res.data
+                        setGroups(g);
+                    })
+                }
+                else if (type?.toString() == "Student") {
+                    MarkService.getStudentsMarks(u?.id!).then((res) => {
+                        setMarks(res.data);
+                    })
+                }
+            })
         });
-        StorageManager.getUserType().then((type) => {
-            setUserType(type!)
-            if (type?.toString() == "Teacher") {
-                GroupSerivce.getGroupsByTeacher(u?.id!).then((res) => {
-                    const g = res.data
-                    setGroups(g);
-                })
-            }
-            else if (type?.toString() == "Student") {
-                MarkService.getStudentsMarks(u?.id!).then((res) => {
-                    setMarks(res.data);
-                })
-            }
-        })
     }
 
     useEffect(() => {
@@ -96,7 +96,7 @@ const ProfilePage = ({ navigation }: any) => {
                         </>
                         : <>
                             <View style={[ProfileStyles.bodyWrapper]}>
-                                
+
                                 <Text style={[ProfileStyles.markHeader, {
                                     color: colors.primary
                                 }]}>

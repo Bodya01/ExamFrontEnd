@@ -1,5 +1,7 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import AuthenticationResult from "../../../models/authentication-models/Response/AuthenticationResult";
+import Student from "../../../models/user-models/Student";
+import Teacher from "../../../models/user-models/Teacher";
 import User from "../../../models/user-models/User";
 
 
@@ -41,23 +43,32 @@ const StorageManager = {
     },
 
     getStoredUser: async () => {
+        const userType = await StorageManager.getUserType();
         const storedUser = await AsyncStorage.getItem("user");
-        return JSON.parse(storedUser!) as User
+        if (userType == "Student") {
+            return JSON.parse(storedUser!) as Student
+        }
+        else if (userType == "Teacher") {
+            return JSON.parse(storedUser!) as Teacher
+        }
+        else{
+            return JSON.parse(storedUser!) as User
+        }
     },
 
     getTokenExpireTime: () => {
         return AsyncStorage.getItem("expireTime");
     },
 
-    getRefreshToken:  () => {
+    getRefreshToken: () => {
         return AsyncStorage.getItem("refreshToken");
     },
 
-    getToken:  () => {
+    getToken: () => {
         return AsyncStorage.getItem("userToken");
     },
 
-    getUserType: () =>{
+    getUserType: () => {
         return AsyncStorage.getItem("userType")
     }
 }

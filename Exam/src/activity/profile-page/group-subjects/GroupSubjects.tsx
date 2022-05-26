@@ -50,6 +50,7 @@ const GroupSubjects = ({ route, navigation }: any) => {
             {
                 subjects.map((subject) => (
                     <TouchableOpacity
+                        key={subject?.id}
                         onPress={() => {navigation.navigate("JournalMarks", {groupId: groupId, subjectId: subject?.id})}}
                         style={[GroupSubjectsStyles.markNavButton, {
                             backgroundColor: colors.grayBackgroud
