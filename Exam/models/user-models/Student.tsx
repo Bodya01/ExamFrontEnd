@@ -5,6 +5,7 @@ type Student = null | {
     name: string,
     surname: string,
     hasSchoolarship: boolean,
+    bankAccount: string,
     groupId: number,
     isExpulsed: boolean,
 };

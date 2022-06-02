@@ -7,6 +7,7 @@ import { useTheme } from "../theme/ThemeProvider";
 import SearchTabs from "../search/SearchTabs";
 import SettingsTabs from "../settings/SettingsTabs";
 import MyProfileTabs from "../my-profile/MyProfileTabs";
+import NotificationsTabs from "../notifications/NotificationsTabs";
 
 const Tabs = createBottomTabNavigator();
 
@@ -87,9 +88,9 @@ const AppTabs = () => {
             />
             <Tabs.Screen
                 name="NotificationsTabs"
-                component={NotificationsPage}
+                component={NotificationsTabs}
                 options={{
-                    headerShown: true,
+                    headerShown: false,
                     headerTitle: "Notifications",
                     headerStyle: {
                         backgroundColor: colors.white,

@@ -12,7 +12,11 @@ const APIRoutes = {
 
     getMarkUrl: () => APIConfig.URL + "api/marks/",
 
-    getStudentUrl: () => APIConfig.URL + "api/users/students/"
+    getStudentUrl: () => APIConfig.URL + "api/users/students/",
+    
+    getNotificationUrl: () => APIConfig.URL + "api/notifications/",
+
+    getSignalRUrl: () => APIConfig.URL + "signalr/"
 }
 
 export default APIRoutes;

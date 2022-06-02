@@ -1,6 +1,10 @@
+import { number } from "prop-types";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import StudentService from "../../../../api-service/student-service/StudentService";
+import ChangeAccountModel from "../../../../models/user-models/ChangeAccountModel";
+import Student from "../../../../models/user-models/Student";
 import StorageManager from "../../../components/storage/StorageManager";
 import { useTheme } from "../../../components/theme/ThemeProvider";
 import BankAccountStyles from "./BankAccountStyles";
@@ -9,22 +13,35 @@ import BankAccountStyles from "./BankAccountStyles";
 const BankAccount = ({ navigation }: any) => {
     const { colors } = useTheme();
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [id, setId] = useState<string>();
     const [isSuccessful, setIsSuccessful] = useState<boolean>();
     const [bankAccout, setBankAccount] = useState<string | undefined>("MYBANK");
     const [newBankAccount, setNewBankaccount] = useState<string>("");
     const [confirmBankAccount, setConfirmBankAccount] = useState<string>("");
     const [hasConfirmError, setConfirmError] = useState<boolean>(false);
 
-    
+    const updateAccount = (props: ChangeAccountModel) => {
+        StudentService.updateBankAccount({ userId: props.userId, bankAccount: props.bankAccount }).then((res) => {
+            console.warn(res.data);
+            setBankAccount(newBankAccount);
+            setIsSuccessful(true);
+        }).catch(err => console.warn(err))
+    };
 
     useEffect(() => {
-        StorageManager.getStoredUser().then((user) => {
-            setBankAccount(user?.bankAccout);
+        StorageManager.getUserType().then((type) => {
+            if (type == "Student") {
+                StorageManager.getStoredUser().then((user) => {
+                    let student = user as Student;
+                    setBankAccount(student?.bankAccount);
+                    setId(student?.id!);
+                })
+            }
         });
-        if(newBankAccount !== confirmBankAccount){
+        if (newBankAccount !== confirmBankAccount) {
             setConfirmError(true);
         }
-        else{
+        else {
             setConfirmError(false);
         }
     }, [newBankAccount, confirmBankAccount])
@@ -81,16 +98,10 @@ const BankAccount = ({ navigation }: any) => {
                             : <></>
                         }
 
-                        <View style={[{width: "100%", justifyContent: "center", alignItems: "center",}]}>
+                        <View style={[{ width: "100%", justifyContent: "center", alignItems: "center", }]}>
                             <TouchableOpacity
                                 onPress={() => {
-                                    setIsLoading(true);
-                                    setTimeout(() => {
-                                        setIsLoading(false);
-                                        setIsSuccessful(true);
-                                        setBankAccount(newBankAccount);
-                                    }, 2000);
-                                    
+                                    updateAccount({ userId: id!, bankAccount: newBankAccount });
                                 }}
                                 style={[BankAccountStyles.confirmButtonWrapper, {
                                     backgroundColor: colors.neutralLight
@@ -104,10 +115,10 @@ const BankAccount = ({ navigation }: any) => {
                                 </Text>
                             </TouchableOpacity>
                             {isLoading
-                                ? <ActivityIndicator size={"large"} color={colors.accentBlue}/>
+                                ? <ActivityIndicator size={"large"} color={colors.accentBlue} />
                                 : isSuccessful
-                                    ?<Text style={[{color: colors.accentGreen, fontSize: 17, marginTop: 5}]}>Bank account changed successfuly</Text>
-                                    :<></>
+                                    ? <Text style={[{ color: colors.accentGreen, fontSize: 17, marginTop: 5 }]}>Bank account changed successfuly</Text>
+                                    : <></>
                             }
                         </View>
                     </View>
@@ -128,7 +139,7 @@ const BankAccount = ({ navigation }: any) => {
                                     style={[BankAccountStyles.bankAccountText, {
                                         color: colors.primary
                                     }]}>
-                                    Your current bank account is:
+                                    Your current bank account is: 
                                 </Text>
                                 <Text style={[BankAccountStyles.bankAccountText, {
                                     color: colors.primary
@@ -145,7 +156,7 @@ const BankAccount = ({ navigation }: any) => {
 };
 
 BankAccount.navigationOptions = {
-    headerLeft:(
+    headerLeft: (
         <TouchableOpacity>
             <Ionicons
                 name="arrow-back-circle"

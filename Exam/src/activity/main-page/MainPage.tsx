@@ -74,6 +74,7 @@ const MainPage = ({ navigation }: any) => {
                     {
                         exams.map((exam) => (
                             <ExamCard
+                                key={exam?.id}
                                 exam={exam}
                             />
                         ))
@@ -88,18 +89,31 @@ const MainPage = ({ navigation }: any) => {
                         Your next exam
                     </Text>
                 </View>
-                <View style={[MainPageStyle.nextExamWrapper]}>
-                    <Text style={[MainPageStyle.nextExamText, {
-                        color: colors.primary, fontSize: 17
-                    }]}>
-                        {`${nextExam?.examDate.toString().slice(0, 10)} ${nextExam?.examDate.toString().slice(11, 16)}`}
-                    </Text>
-                    <Text style={[MainPageStyle.nextExamText, {
-                        color: colors.primary, fontSize: 17
-                    }]}>
-                        {nextExam?.subject?.name}
-                    </Text>
-                </View>
+                {
+                    nextExam
+                        ? (
+                            <View style={[MainPageStyle.nextExamWrapper]}>
+                                <Text style={[MainPageStyle.nextExamText, {
+                                    color: colors.primary
+                                }]}>
+                                    {`${nextExam?.examDate.toString().slice(0, 10)} ${nextExam?.examDate.toString().slice(11, 16)}`}
+                                </Text>
+                                <Text style={[MainPageStyle.nextExamText, {
+                                    color: colors.primary
+                                }]}>
+                                    {nextExam?.subject?.name}
+                                </Text>
+                            </View>
+                        )
+                        : (
+                            <Text
+                                style={[MainPageStyle.noExamText, {
+                                    color: colors.primary
+                                }]}>
+                                You don't have next exam
+                            </Text>
+                        )
+                }
             </View>
         </View>
     )

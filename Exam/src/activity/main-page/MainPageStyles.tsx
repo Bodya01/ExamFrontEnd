@@ -43,6 +43,11 @@ const MainPageStyle = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-around",
         width: "100%" 
+    },
+
+    noExamText:{
+        fontSize: 17,
+        alignSelf: "center"
     }
 });
 
